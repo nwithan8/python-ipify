@@ -15,7 +15,7 @@ from .settings import API_URI, MAX_TRIES, USER_AGENT
 
 
 @on_exception(expo, RequestException, max_tries=MAX_TRIES)
-def _get_ip_resp():
+def _get_ip_resp(api_url: str):
     """
     Internal function which attempts to retrieve this machine's public IP
     address from the ipify service (https://www.ipify.org).
@@ -30,22 +30,44 @@ def _get_ip_resp():
         using an exponential backoff algorithm.  This is a safe way to retry
         failed requests without giving up.
     """
-    return get(API_URI, headers={'user-agent': USER_AGENT})
+    return get(api_url, headers={'user-agent': USER_AGENT})
 
 
-def get_ip():
+def get_ipv4():
     """
     Query the ipify service (https://www.ipify.org) to retrieve this machine's
-    public IP address.
+    public IPv4 address.
 
     :rtype: string
-    :returns: The public IP address of this machine as a string.
+    :returns: The public IPv4 address of this machine as a string.
     :raises: ConnectionError if the request couldn't reach the ipify service,
-        or ServiceError if there was a problem getting the IP address from
+        or ServiceError if there was a problem getting the IPv4 address from
         ipify's service.
     """
     try:
-        resp = _get_ip_resp()
+        resp = _get_ip_resp(api_url="https://api.ipify.org")
+    except RequestException:
+        raise ConnectionError("The request failed because it wasn't able to reach the ipify service. This is most likely due to a networking error of some sort.")
+
+    if resp.status_code != 200:
+        raise ServiceError('Received an invalid status code from ipify:' + str(resp.status_code) + '. The service might be experiencing issues.')
+
+    return resp.text
+
+
+def get_universal_ip():
+    """
+    Query the ipify service (https://www.ipify.org) to retrieve this machine's
+    public IPv4/IPv6 address.
+
+    :rtype: string
+    :returns: The public IPv4/IPv6 address of this machine as a string.
+    :raises: ConnectionError if the request couldn't reach the ipify service,
+        or ServiceError if there was a problem getting the IPv4/IPv6 address from
+        ipify's service.
+    """
+    try:
+        resp = _get_ip_resp(api_url="https://api64.ipify.org")
     except RequestException:
         raise ConnectionError("The request failed because it wasn't able to reach the ipify service. This is most likely due to a networking error of some sort.")
 
