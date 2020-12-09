@@ -5,12 +5,18 @@ setup.py
 Packaging information and tools.
 """
 
-
-from os.path import abspath, dirname, join, normpath
 from subprocess import call
 from sys import exit
 
-from setuptools import Command, find_packages, setup
+from setuptools import Command, setup
+
+import ipify2.__info__ as package_info
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+with open("requirements.txt", 'r') as fh:
+    requirements = fh.read().splitlines()
 
 
 class TestCommand(Command):
@@ -32,53 +38,36 @@ class TestCommand(Command):
 
     def run(self):
         """Run the test suite."""
-        exit(call(['py.test', '--cov-report', 'term-missing', '--cov', 'ipify']))
+        exit(call(['py.test', '--cov-report', 'term-missing', '--cov', 'ipify2']))
 
 
 setup(
-
-    # Basic package information:
-    name = 'ipify',
-    version = '1.0.0',
-    packages = find_packages(exclude=['tests']),
-
-    # Packaging options:
-    zip_safe = False,
-    include_package_data = True,
-
+    name=package_info.__title__,  # How you named your package folder (MyLib)
+    packages=[package_info.__title__],  # Choose the same as "name"
+    version=package_info.__version__,  # Start with a small number and increase it with every change you make
+    license=package_info.__license__,
+    description="Interact with PocketCast's unofficial API",  # Give a short description about your library
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author=package_info.__author__,  # Type in your name
+    author_email=package_info.__author_email__,  # Type in your E-Mail
+    url=f'https://github.com/nwithan8/{package_info.__title__}',
+    download_url=f'https://github.com/nwithan8/{package_info.__title__}/archive/{package_info.__version__}.tar.gz',
     # Package dependencies:
-    install_requires = [
-        'backoff>=1.0.7',
-        'requests>=2.7.0',
-    ],
-    tests_require = [
-        'pytest>=2.7.0',
-        'pytest-cov>=1.8.1',
-        'python-coveralls>=2.5.0',
-    ],
-
+    install_requires=requirements,
+    tests_require=requirements,
     # Test harness:
-    cmdclass = {
+    cmdclass={
         'test': TestCommand,
     },
-
-    # Metadata for PyPI:
-    author = 'Randall Degges',
-    author_email = 'r@rdegges.com',
-    license = 'UNLICENSE',
-    url = 'https://github.com/rdegges/python-ipify',
-    keywords = 'python api client ipify ip address public ipv4 ipv6 service',
-    description = 'The official client library for ipify: A Simple IP Address API.',
-    long_description = open(normpath(join(dirname(abspath(__file__)), 'README.rst'))).read(),
-    classifiers = [
+    keywords=['Python', 'API', 'client', 'ipify2', 'ip', 'address', 'public', 'ipv4', 'ipv6', 'service'],
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: Public Domain',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
@@ -93,5 +82,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],
-
+    python_requires='>=3.0'
 )

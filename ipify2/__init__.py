@@ -1,8 +1,10 @@
 """
+Original message from founder Randall Degges left untouched below for posterity
+
 ipify
 ~~~~~
 
-The official client library for ipify: https://www.ipify.org - A Simple IP
+The official client library for ipify2: https://www.ipify.org - A Simple IP
 Address API.
 
 ipify will get your public IP address, and return it.  No questions asked.
@@ -19,13 +21,8 @@ ipify is a great choice because it's:
 
 For more information, visit the project website: https://www.ipify.org
 
--Randall
+-Randall Degges
 """
-
-
-__author__ = 'Randall Degges'
-__license__ = 'UNLICENSE'
-__version__ = '1.0.0'
 
 
 from .ipify import get_ipv4, get_universal_ip

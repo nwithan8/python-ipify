@@ -1,2 +1,0 @@
-include README.rst UNLICENSE
-recursive-include tests *.py
