@@ -28,4 +28,4 @@ __license__ = 'UNLICENSE'
 __version__ = '1.0.0'
 
 
-from .ipify import get_ip
+from .ipify import get_ipv4, get_universal_ip
