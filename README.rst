@@ -7,20 +7,13 @@ python-ipify
 The official client library for `ipify <https://www.ipify.org/>`_: *A Simple IP
 Address API*.
 
-.. image:: https://img.shields.io/pypi/v/ipify.svg
-    :alt: python-ipify Release
-    :target: https://pypi.python.org/pypi/ipify
+.. image:: https://img.shields.io/pypi/v/ipify2.svg
+    :alt: ipify2 Release
+    :target: https://pypi.python.org/pypi/ipify2
 
-.. image:: https://img.shields.io/pypi/dm/ipify.svg
-    :alt: python-ipify Downloads
-    :target: https://pypi.python.org/pypi/ipify
-
-.. image:: https://img.shields.io/travis/rdegges/python-ipify.svg
-    :alt: python-ipify Build
-    :target: https://travis-ci.org/rdegges/python-ipify
-
-.. image:: https://coveralls.io/repos/rdegges/python-ipify/badge.svg?branch=master
-    :target: https://coveralls.io/r/rdegges/python-ipify?branch=master
+.. image:: https://img.shields.io/pypi/dm/ipify2.svg
+    :alt: ipify2 Downloads
+    :target: https://pypi.python.org/pypi/ipify2
 
 
 Meta
