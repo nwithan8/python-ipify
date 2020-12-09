@@ -1,3 +1,6 @@
+**ipify2: This is a maintained, updated fork of the original ipify package**
+
+
 python-ipify
 ============
 
@@ -23,10 +26,17 @@ Address API*.
 Meta
 ----
 
+Original
+
 - Author: Randall Degges
 - Email: r@rdegges.com
 - Site: http://www.rdegges.com
-- Status: maintained, active
+
+Maintainer
+
+- Author: Nate Harris
+- Email: n8gr8gbln@gmail.com
+- Site: https://nateharr.is
 
 
 Purpose
@@ -53,11 +63,11 @@ This library also has some other nice features you might care about:
 Installation
 ------------
 
-To install ``ipify``, simply run:
+To install ``ipify2``, simply run:
 
 .. code-block:: console
 
-    $ pip install ipify
+    $ pip install ipify2
 
 This will install the latest version of the library automatically.
 
@@ -69,8 +79,8 @@ Using this library is very simple.  Here's a simple example:
 
 .. code-block:: python
 
-    >>> from ipify import get_ip
-    >>> ip = get_ip()
+    >>> from ipify2 import get_ipv4, get_universal_ip
+    >>> ip = get_ipv4()
     >>> ip
     u'96.41.136.144'
 
@@ -84,8 +94,8 @@ Here's how you can handle all of these edge cases:
 
 .. code-block:: python
 
-    from ipify import get_ip
-    from ipify.exceptions import ConnectionError, ServiceError
+    from ipify2 import get_ip
+    from ipify2.exceptions import ConnectionError, ServiceError
 
     try:
         ip = get_ip()
@@ -106,11 +116,11 @@ type they may be*):
 
 .. code-block:: python
 
-    from ipify import get_ip
-    from ipify.exceptions import IpifyException
+    from ipify2 import get_ipv4
+    from ipify2.exceptions import IpifyException
 
     try:
-        ip = get_ip()
+        ip = get_ipv4()
     except IpifyException:
         # If you get here, then some ipify exception occurred.
     except:
@@ -147,37 +157,3 @@ To run the test suite, you can use the following commands:
     $ pip install -e .
     $ pip install -r requirements.txt
     $ python setup.py test
-
-
-Change Log
-----------
-
-All library changes, in descending order.
-
-
-Version 1.0.1
-*************
-
-**Not yet released.**
-
-- Improving test to actually validate IP addresses.  Thanks to `@lethargilistic
-  <https://github.com/lethargilistic>`_ for the pull request!
-- Fixing URLs in the README / comments to point to https URLs.  Thanks to
-  `@ktdreyer <https://github.com/ktdreyer>`_ for the pull request!
-- Fixing typo in the README.  Thanks `@prologic <https://github.com/prologic>`_
-  for the find!
-- Adding a working test for exercising ``ServiceError`` exceptions.  Improves
-  test coverage a bit =)
-- Removing unnecessary assertions / tests.
-- Adding test to improve test coverage to 100% =)
-- Fixing minor style issues.  I'm really obsessed with code style / quality,
-  don't judge me!
-- Adding Python 3.5 / 3.6 support.
-
-
-Version 1.0.0
-*************
-
-**Released May 6, 2015.**
-
-- First release!
