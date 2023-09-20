@@ -25,4 +25,4 @@ For more information, visit the project website: https://www.ipify.org
 """
 
 
-from .ipify import get_ipv4, get_universal_ip
+from .ipify import get_ipv4, get_ipv6, get_universal_ip

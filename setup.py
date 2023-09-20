@@ -12,7 +12,7 @@ from setuptools import Command, setup
 
 import ipify2.__info__ as package_info
 
-with open("README.rst", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 with open("requirements.txt", 'r') as fh:
@@ -46,7 +46,7 @@ setup(
     packages=[package_info.__title__],  # Choose the same as "name"
     version=package_info.__version__,  # Start with a small number and increase it with every change you make
     license=package_info.__license__,
-    description="Interact with PocketCast's unofficial API",  # Give a short description about your library
+    description="Get IP address information via ipify.org",  # Give a short description about your library
     long_description=long_description,
     long_description_content_type="text/markdown",
     author=package_info.__author__,  # Type in your name
@@ -60,7 +60,7 @@ setup(
     cmdclass={
         'test': TestCommand,
     },
-    keywords=['Python', 'API', 'client', 'ipify2', 'ip', 'address', 'public', 'ipv4', 'ipv6', 'service'],
+    keywords=['Python', 'API', 'client', 'ipify', 'ipify2', 'ip', 'address', 'public', 'ipv4', 'ipv6', 'service'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
